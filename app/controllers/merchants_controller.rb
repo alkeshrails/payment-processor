@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-  before_action :get_merchant, except: [:index]
+  before_action :set_merchant, except: [:index]
 
   def index
     @merchants = current_user.merchants
@@ -32,7 +32,7 @@ class MerchantsController < ApplicationController
     params.require(:merchant).permit(:name, :email, :description, :status)
   end
 
-  def get_merchant
+  def set_merchant
     @merchant = current_user.merchants.find_by(id: params[:id])
   end
 end
